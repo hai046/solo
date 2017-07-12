@@ -41,7 +41,8 @@ admin.article = {
         var filename = "";
         $('#' + id).fileupload({
             multipart: true,
-            url: "https://up.qbox.me",
+            // url: "https://up.qbox.me",
+            url: latkeConfig.servePath + "/upload",
             add: function (e, data) {
                 filename = data.files[0].name;
 
@@ -68,7 +69,7 @@ admin.article = {
                 }
 
                 $('#' + id).after('<div>![' + data.files[0].name + '](http://'
-                        + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                    + qiniu.qiniuDomain + qiniuKey + ')</div>');
             },
             fail: function (e, data) {
                 $('#' + id + ' span').text("Upload error, please check Qiniu configurations [" + data.errorThrown + "]");
@@ -81,7 +82,7 @@ admin.article = {
         });
     },
     /**
-     * @description 获取文章并把值塞入发布文章页面 
+     * @description 获取文章并把值塞入发布文章页面
      * @param {String} id 文章 id
      * @param {Boolean} isArticle 文章或者草稿
      */
@@ -125,7 +126,7 @@ admin.article = {
                 admin.article.content = admin.editors.articleEditor.getContent();
 
                 var tags = result.article.articleTags,
-                        tagsString = '';
+                    tagsString = '';
                 for (var i = 0; i < tags.length; i++) {
                     if (0 === i) {
                         tagsString = tags[i].tagTitle;
@@ -203,7 +204,7 @@ admin.article = {
             });
 
             var articleContent = admin.editors.articleEditor.getContent(),
-                    articleAbstract = admin.editors.abstractEditor.getContent();
+                articleAbstract = admin.editors.abstractEditor.getContent();
 
             var requestJSONObject = {
                 "article": {
@@ -277,7 +278,7 @@ admin.article = {
             });
 
             var articleContent = admin.editors.articleEditor.getContent(),
-                    articleAbstract = admin.editors.abstractEditor.getContent();
+                articleAbstract = admin.editors.abstractEditor.getContent();
 
             var requestJSONObject = {
                 "article": {
@@ -472,12 +473,12 @@ admin.article = {
 
         // submit action
         $("#submitArticle").click(function () {
-            if (admin.article.status.id) {
-                admin.article.update(true);
-            } else {
-                admin.article.add(true);
+                if (admin.article.status.id) {
+                    admin.article.update(true);
+                } else {
+                    admin.article.add(true);
+                }
             }
-        }
         );
         $("#saveArticle").click(function () {
             if (admin.article.status.id) {
@@ -513,8 +514,8 @@ admin.article = {
      */
     _autoSaveToDraft: function () {
         if ($("#title").val().replace(/\s/g, "") === "" ||
-                admin.editors.articleEditor.getContent().replace(/\s/g, "") === "" ||
-                $("#tag").val().replace(/\s/g, "") === "") {
+            admin.editors.articleEditor.getContent().replace(/\s/g, "") === "" ||
+            $("#tag").val().replace(/\s/g, "") === "") {
             return;
         }
         if (admin.article.status.id) {
@@ -555,7 +556,7 @@ admin.article = {
         return false;
     },
     /**
-     * @description 取消发布 
+     * @description 取消发布
      * @param {Boolean} isAuto 是否为自动保存
      */
     unPublish: function (isAuto) {
@@ -621,7 +622,7 @@ admin.article = {
         var articleContent = admin.editors.articleEditor.getContent();
 
         if (window.location.hash === "#article/article" &&
-                articleContent.replace(/\s/g, '') !== "") {
+            articleContent.replace(/\s/g, '') !== "") {
             if (confirm(Label.editorPostLabel)) {
                 admin.article.clear();
             }
@@ -657,7 +658,7 @@ admin.article = {
 };
 
 /**
- * @description 注册到 admin 进行管理 
+ * @description 注册到 admin 进行管理
  */
 admin.register.article = {
     "obj": admin.article,

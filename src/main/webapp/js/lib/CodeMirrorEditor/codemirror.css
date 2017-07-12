@@ -11,6 +11,7 @@
 
 .CodeMirror-lines {
     padding: 4px 0; /* Vertical padding around content */
+    font-size:20px;
 }
 .CodeMirror-lines pre {
     padding: 0 4px; /* Horizontal padding of content */
@@ -626,4 +627,5 @@ span.CodeMirror-selectedtext { background: none; }
     padding: 4px;
     box-sizing: border-box;
     overflow: auto;
+    font-size: 20px;
 }

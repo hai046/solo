@@ -86,7 +86,9 @@ Util.initUploadFile = function (obj) {
         multipart: true,
         pasteZone: obj.pasteZone,
         dropZone: obj.pasteZone,
-        url: "https://up.qbox.me/",
+        // url: "https://up.qbox.me/",
+        url: latkeConfig.servePath + "/upload",
+
         paramName: "file",
         add: function (e, data) {
             if (data.files[0].name) {
@@ -136,6 +138,8 @@ Util.initUploadFile = function (obj) {
             }
         },
         done: function (e, data) {
+
+
             var qiniuKey = data.result.key;
             if (!qiniuKey) {
                 alert("Upload error");
