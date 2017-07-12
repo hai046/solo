@@ -269,7 +269,7 @@ admin.editors.CodeMirror = {
             "qiniuUploadToken": qiniu.qiniuUploadToken,
             "editor": commentEditor.codemirror,
             "uploadingLabel": 'uploading...',
-            "qiniuDomain": '//' + qiniu.qiniuDomain
+            "qiniuDomain":  qiniu.qiniuDomain
         });
 
         this[conf.id] = commentEditor.codemirror;
