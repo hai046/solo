@@ -2,8 +2,8 @@
 
 result=`ps -ef|grep -v grep |grep org.b3log.solo.Starter`
 
-echo result
-if [[ result != "" ]];then
+echo ${result}
+if [[ ${result} != "" ]];then
     echo "存在该线程  不能开启"
     exit 0;
 
