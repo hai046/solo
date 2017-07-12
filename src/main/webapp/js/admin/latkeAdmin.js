@@ -49,7 +49,7 @@ $.extend(Admin.prototype, {
      */
     setHashByPage: function (currentPage) {
         var hash = window.location.hash,
-                hashList = hash.split("/");
+            hashList = hash.split("/");
         if (/^\d*$/.test(hashList[hashList.length - 1])) {
             hashList[hashList.length - 1] = currentPage;
         } else {
@@ -73,7 +73,7 @@ $.extend(Admin.prototype, {
         var tagList = tag.split("/");
         var tags = {};
         tags.page = 1,
-                tags.hashList = [];
+            tags.hashList = [];
         for (var i = 0; i < tagList.length; i++) {
             if (i === tagList.length - 1 && (/^\d+$/.test(tagList[i]))) {
                 tags.page = tagList[i];
@@ -91,7 +91,7 @@ $.extend(Admin.prototype, {
         $("#tipMsg").text("");
         var tags = admin.analyseHash();
         var tab = tags.hashList[1],
-                subTab = tags.hashList[2];
+            subTab = tags.hashList[2];
 
         if (tags.hashList.length === 1) {
             tab = tags.hashList[0];
@@ -113,8 +113,8 @@ $.extend(Admin.prototype, {
         try {
             // 除更新、发布、取消发布文章，编辑器中无内容外，离开编辑器需进行提示。
             if (tab !== "article" && admin.article.isConfirm &&
-                    admin.editors.articleEditor.getContent().replace(/\s/g, '') !== ""
-                    && admin.article.content !== admin.editors.articleEditor.getContent()) {
+                admin.editors.articleEditor.getContent().replace(/\s/g, '') !== ""
+                && admin.article.content !== admin.editors.articleEditor.getContent()) {
                 if (!confirm(Label.editorLeaveLabel)) {
                     window.location.hash = "#article/article";
                     return;
@@ -122,16 +122,16 @@ $.extend(Admin.prototype, {
             }
             // 不离开编辑器，hash 需变为 "#article/article"，此时不需要做任何处理。
             if (tab === "article" && admin.article.isConfirm &&
-                    admin.editors.articleEditor.getContent().replace(/\s/g, '') !== ""
-                    && admin.article.content !== admin.editors.articleEditor.getContent()) {
+                admin.editors.articleEditor.getContent().replace(/\s/g, '') !== ""
+                && admin.article.content !== admin.editors.articleEditor.getContent()) {
                 return;
             }
         } catch (e) {
             var $articleContent = $('#articleContent');
             if ($articleContent.length > 0) {
                 if (tab !== "article" && admin.article.isConfirm &&
-                        $articleContent.val().replace(/\s/g, '') !== ""
-                        && admin.article.content !== $articleContent.val()) {
+                    $articleContent.val().replace(/\s/g, '') !== ""
+                    && admin.article.content !== $articleContent.val()) {
                     if (!confirm(Label.editorLeaveLabel)) {
                         window.location.hash = "#article/article";
                         return;
@@ -139,8 +139,8 @@ $.extend(Admin.prototype, {
                 }
                 // 不离开编辑器，hash 需变为 "#article/article"，此时不需要做任何处理。
                 if (tab === "article" && admin.article.isConfirm &&
-                        $articleContent.val().replace(/\s/g, '') !== ""
-                        && admin.article.content !== $articleContent.val()) {
+                    $articleContent.val().replace(/\s/g, '') !== ""
+                    && admin.article.content !== $articleContent.val()) {
                     return;
                 }
             }
@@ -169,8 +169,7 @@ $.extend(Admin.prototype, {
 
                     // 页面包含子 tab，需根据 hash 定位到相应的 tab
                     if (subTab) {
-                        $("#tab" + tab.substring(0, 1).toUpperCase() + tab.substring(1)).
-                                tabs("setCurrent", subTab);
+                        $("#tab" + tab.substring(0, 1).toUpperCase() + tab.substring(1)).tabs("setCurrent", subTab);
                     }
 
                     // 根据 hash 调用现有的插件函数
@@ -188,8 +187,7 @@ $.extend(Admin.prototype, {
 
                 // 页面包含子 tab，需根据 hash 定位到相应的 tab
                 if (subTab) {
-                    $("#tab" + tab.substring(0, 1).toUpperCase() + tab.substring(1)).
-                            tabs("setCurrent", subTab);
+                    $("#tab" + tab.substring(0, 1).toUpperCase() + tab.substring(1)).tabs("setCurrent", subTab);
                 }
 
                 // 根据 hash 调用现有的插件函数
@@ -263,7 +261,8 @@ $.extend(Admin.prototype, {
     }
 });
 
-var admin = new Admin();/*
+var admin = new Admin();
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -325,7 +324,7 @@ $.extend(SoloEditor.prototype, {
         if (type) {
             conf.type = type;
         }
-        
+
         var types = conf.type.split("-");
         if (types.length === 2) {
             conf.codeMirrorLanguage = types[1];
@@ -539,7 +538,7 @@ admin.editors.KindEditor = {
         } else {
             try {
                 this[conf.id] = KindEditor.create('#' + conf.id, {
-                    'uploadJson' : 'kindeditor/php/upyunUpload.php',
+                    'uploadJson': 'kindeditor/php/upyunUpload.php',
                     langType: language,
                     items: ["formatblock", "fontname", "fontsize", "|", "bold", "italic", "underline", "strikethrough", "forecolor", "|",
                         "link", "unlink", "image", "media", "|", "pagebreak", "emoticons", "code", "/",
@@ -861,7 +860,7 @@ admin.editors.CodeMirror = {
             "qiniuUploadToken": qiniu.qiniuUploadToken,
             "editor": commentEditor.codemirror,
             "uploadingLabel": 'uploading...',
-            "qiniuDomain": '//' + qiniu.qiniuDomain
+            "qiniuDomain": qiniu.qiniuDomain
         });
 
         this[conf.id] = commentEditor.codemirror;
@@ -917,7 +916,8 @@ admin.editors.CodeMirror = {
         this[id].toTextArea();
         $('.editor-toolbar').remove();
     }
-};/*
+};
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -960,16 +960,16 @@ $.extend(TablePaginate.prototype, {
             }
         }
         $("#" + this.id + "Table").table(tableData);
-    
+
     },
-    
+
     /*
      * 初始化分页
      */
     initPagination: function () {
         var id = this.id;
         $("#" + id + "Pagination").paginate({
-            "bind": function(currentPage, errorMessage) {
+            "bind": function (currentPage, errorMessage) {
                 if (errorMessage) {
                     $("#tipMsg").text(errorMessage);
                 } else {
@@ -1001,7 +1001,7 @@ $.extend(TablePaginate.prototype, {
             }
         });
     },
-    
+
     /*
      * 更新 table & paginateion
      */
@@ -1018,11 +1018,11 @@ $.extend(TablePaginate.prototype, {
                 groupData: data
             }]
         });
-                    
+
         if (pageInfo.paginationPageCount === 0) {
             pageInfo.paginationPageCount = 1;
         }
-        
+
         $("#" + this.id + "Pagination").paginate("update", {
             pageCount: pageInfo.paginationPageCount,
             currentPage: currentPage,
@@ -1103,7 +1103,7 @@ admin.article = {
                 }
 
                 $('#' + id).after('<div>![' + data.files[0].name + '](http://'
-                        + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                    + qiniu.qiniuDomain + qiniuKey + ')</div>');
             },
             fail: function (e, data) {
                 $('#' + id + ' span').text("Upload error, please check Qiniu configurations [" + data.errorThrown + "]");
@@ -1116,7 +1116,7 @@ admin.article = {
         });
     },
     /**
-     * @description 获取文章并把值塞入发布文章页面 
+     * @description 获取文章并把值塞入发布文章页面
      * @param {String} id 文章 id
      * @param {Boolean} isArticle 文章或者草稿
      */
@@ -1160,7 +1160,7 @@ admin.article = {
                 admin.article.content = admin.editors.articleEditor.getContent();
 
                 var tags = result.article.articleTags,
-                        tagsString = '';
+                    tagsString = '';
                 for (var i = 0; i < tags.length; i++) {
                     if (0 === i) {
                         tagsString = tags[i].tagTitle;
@@ -1238,7 +1238,7 @@ admin.article = {
             });
 
             var articleContent = admin.editors.articleEditor.getContent(),
-                    articleAbstract = admin.editors.abstractEditor.getContent();
+                articleAbstract = admin.editors.abstractEditor.getContent();
 
             var requestJSONObject = {
                 "article": {
@@ -1312,7 +1312,7 @@ admin.article = {
             });
 
             var articleContent = admin.editors.articleEditor.getContent(),
-                    articleAbstract = admin.editors.abstractEditor.getContent();
+                articleAbstract = admin.editors.abstractEditor.getContent();
 
             var requestJSONObject = {
                 "article": {
@@ -1507,12 +1507,12 @@ admin.article = {
 
         // submit action
         $("#submitArticle").click(function () {
-            if (admin.article.status.id) {
-                admin.article.update(true);
-            } else {
-                admin.article.add(true);
+                if (admin.article.status.id) {
+                    admin.article.update(true);
+                } else {
+                    admin.article.add(true);
+                }
             }
-        }
         );
         $("#saveArticle").click(function () {
             if (admin.article.status.id) {
@@ -1548,8 +1548,8 @@ admin.article = {
      */
     _autoSaveToDraft: function () {
         if ($("#title").val().replace(/\s/g, "") === "" ||
-                admin.editors.articleEditor.getContent().replace(/\s/g, "") === "" ||
-                $("#tag").val().replace(/\s/g, "") === "") {
+            admin.editors.articleEditor.getContent().replace(/\s/g, "") === "" ||
+            $("#tag").val().replace(/\s/g, "") === "") {
             return;
         }
         if (admin.article.status.id) {
@@ -1590,7 +1590,7 @@ admin.article = {
         return false;
     },
     /**
-     * @description 取消发布 
+     * @description 取消发布
      * @param {Boolean} isAuto 是否为自动保存
      */
     unPublish: function (isAuto) {
@@ -1656,7 +1656,7 @@ admin.article = {
         var articleContent = admin.editors.articleEditor.getContent();
 
         if (window.location.hash === "#article/article" &&
-                articleContent.replace(/\s/g, '') !== "") {
+            articleContent.replace(/\s/g, '') !== "") {
             if (confirm(Label.editorPostLabel)) {
                 admin.article.clear();
             }
@@ -1692,7 +1692,7 @@ admin.article = {
 };
 
 /**
- * @description 注册到 admin 进行管理 
+ * @description 注册到 admin 进行管理
  */
 admin.register.article = {
     "obj": admin.article,
@@ -1742,7 +1742,7 @@ function getUUID() {
  * @version 1.0.0.9, May 28, 2013
  */
 
-admin.comment = { 
+admin.comment = {
     /*
      * 打开评论窗口
      * @id 该评论对应的 id
@@ -1752,7 +1752,7 @@ admin.comment = {
         this.getList(id, fromId);
         $("#" + fromId + "Comments").dialog("open");
     },
-    
+
     /*
      * 获取评论列表
      * 
@@ -1763,58 +1763,58 @@ admin.comment = {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         $("#" + fromId + "Comments").html("");
-        
+
         var from = "article";
         if (fromId === "page") {
             from = "page";
         }
-        
+
         $.ajax({
-            url: latkeConfig.servePath + "/console/comments/" + from + "/" + onId ,
+            url: latkeConfig.servePath + "/console/comments/" + from + "/" + onId,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 var comments = result.comments,
-                commentsHTML = '';
+                    commentsHTML = '';
                 for (var i = 0; i < comments.length; i++) {
                     var hrefHTML = "<a target='_blank' href='" + comments[i].commentURL + "'>",
-                    content = comments[i].commentContent,
-                    contentHTML = Util.replaceEmString(content);
-                        
+                        content = comments[i].commentContent,
+                        contentHTML = Util.replaceEmString(content);
+
                     if (comments[i].commentURL === "http://") {
                         hrefHTML = "<a target='_blank'>";
                     }
 
                     commentsHTML += "<div class='comment-title'><span class='left'>"
-                    + hrefHTML + comments[i].commentName + "</a>";
+                        + hrefHTML + comments[i].commentName + "</a>";
 
                     if (comments[i].commentOriginalCommentName) {
                         commentsHTML += "@" + comments[i].commentOriginalCommentName;
                     }
                     commentsHTML += "</span><span title='" + Label.removeLabel + "' class='right deleteIcon' onclick=\"admin.comment.del('"
-                    + comments[i].oId + "', '" + fromId + "', '" + onId + "')\"></span><span class='right'><a href='mailto:"
-                    + comments[i].commentEmail + "'>" + comments[i].commentEmail + "</a>&nbsp;&nbsp;"
-                    + $.bowknot.getDate(comments[i].commentTime)
-                    + "&nbsp;</span><div class='clear'></div></div><div class='margin12'>"
-                    + contentHTML + "</div>";
+                        + comments[i].oId + "', '" + fromId + "', '" + onId + "')\"></span><span class='right'><a href='mailto:"
+                        + comments[i].commentEmail + "'>" + comments[i].commentEmail + "</a>&nbsp;&nbsp;"
+                        + $.bowknot.getDate(comments[i].commentTime)
+                        + "&nbsp;</span><div class='clear'></div></div><div class='margin12'>"
+                        + contentHTML + "</div>";
                 }
                 if ("" === commentsHTML) {
                     commentsHTML = Label.noCommentLabel;
                 }
-                
+
                 $("#" + fromId + "Comments").html(commentsHTML);
-                
+
                 $("#loadMsg").text("");
             }
         });
     },
-    
+
     /*
      * 删除评论
      * @id 评论 id
@@ -1829,20 +1829,20 @@ admin.comment = {
             if (fromId === "page") {
                 from = "page";
             }
-            
+
             $.ajax({
                 url: latkeConfig.servePath + "/console/" + from + "/comment/" + id,
                 type: "DELETE",
                 cache: false,
-                success: function(result, textStatus){
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
                         return;
                     }
-                    
+
                     admin.comment.getList(articleId, fromId);
-                    
+
                     $("#loadMsg").text("");
                 }
             });
@@ -1874,8 +1874,8 @@ admin.comment = {
 
 /* article-list 相关操作 */
 admin.articleList = {
-    tablePagination:  new TablePaginate("article"),
-    
+    tablePagination: new TablePaginate("article"),
+
     /* 
      * 初始化 table, pagination, comments dialog 
      */
@@ -1919,27 +1919,27 @@ admin.articleList = {
         var that = this;
         $("#loadMsg").text(Label.loadingLabel);
         $.ajax({
-            url: latkeConfig.servePath + "/console/articles/status/published/" + pageNum + "/" + Label.PAGE_SIZE + "/" +  Label.WINDOW_SIZE,
+            url: latkeConfig.servePath + "/console/articles/status/published/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 var articles = result.articles,
-                articleData = [];
+                    articleData = [];
                 for (var i = 0; i < articles.length; i++) {
                     articleData[i] = {};
                     articleData[i].title = "<a href=\"" + latkeConfig.servePath + articles[i].articlePermalink + "\" target='_blank' title='" + articles[i].articleTitle + "' class='no-underline'>"
-                    + articles[i].articleTitle + "</a><span class='table-tag'>" + articles[i].articleTags + "</span>";
+                        + articles[i].articleTitle + "</a><span class='table-tag'>" + articles[i].articleTags + "</span>";
                     articleData[i].date = $.bowknot.getDate(articles[i].articleCreateTime);
                     articleData[i].comments = articles[i].articleCommentCount;
                     articleData[i].articleViewCount = articles[i].articleViewCount;
                     articleData[i].author = articles[i].authorName;
-                            
+
                     var topClass = articles[i].articlePutTop ? Label.cancelPutTopLabel : Label.putTopLabel;
                     articleData[i].expendRow = "<a target='_blank' href='" + latkeConfig.servePath + articles[i].articlePermalink + "'>" + Label.viewLabel + "</a>  \
                                 <a href='javascript:void(0)' onclick=\"admin.article.get('" + articles[i].oId + "', true)\">" + Label.updateLabel + "</a>  \
@@ -1947,9 +1947,9 @@ admin.articleList = {
                                 <a href='javascript:void(0)' onclick=\"admin.articleList.popTop(this, '" + articles[i].oId + "')\">" + topClass + "</a>  \
                                 <a href='javascript:void(0)' onclick=\"admin.comment.open('" + articles[i].oId + "', 'article')\">" + Label.commentLabel + "</a>";
                 }
-                    
+
                 that.tablePagination.updateTablePagination(articleData, pageNum, result.pagination);
-                
+
                 $("#loadMsg").text("");
             }
         });
@@ -1963,27 +1963,27 @@ admin.articleList = {
     popTop: function (it, id) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
-        
+
         var $it = $(it),
-        ajaxUrl = "canceltop",
-        tip = Label.putTopLabel;
-        
+            ajaxUrl = "canceltop",
+            tip = Label.putTopLabel;
+
         if ($it.html() === Label.putTopLabel) {
             ajaxUrl = "puttop";
             tip = Label.cancelPutTopLabel;
         }
-        
+
         $.ajax({
             url: latkeConfig.servePath + "/console/article/" + ajaxUrl + "/" + id,
             type: "PUT",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                    
+
                 $it.html(tip);
                 $("#loadMsg").text("");
             }
@@ -1994,11 +1994,12 @@ admin.articleList = {
 /*
  * 注册到 admin 进行管理 
  */
-admin.register["article-list"] =  {
+admin.register["article-list"] = {
     "obj": admin.articleList,
     "init": admin.articleList.init,
     "refresh": admin.articleList.getList
-}/*
+}
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2023,8 +2024,8 @@ admin.register["article-list"] =  {
 
 /* draft-list 相关操作 */
 admin.draftList = {
-    tablePagination:  new TablePaginate("draft"),
-    
+    tablePagination: new TablePaginate("draft"),
+
     /* 
      * 初始化 table, pagination, comments dialog 
      */
@@ -2067,20 +2068,20 @@ admin.draftList = {
     getList: function (pageNum) {
         $("#loadMsg").text(Label.loadingLabel);
         var that = this;
-        
+
         $.ajax({
-            url: latkeConfig.servePath + "/console/articles/status/unpublished/" + pageNum + "/" + Label.PAGE_SIZE + "/" +  Label.WINDOW_SIZE,
+            url: latkeConfig.servePath + "/console/articles/status/unpublished/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 var articles = result.articles,
-                articleData = [];
+                    articleData = [];
                 for (var i = 0; i < articles.length; i++) {
                     articleData[i] = {};
                     articleData[i].tags = articles[i].articleTags;
@@ -2089,15 +2090,15 @@ admin.draftList = {
                     articleData[i].articleViewCount = articles[i].articleViewCount;
                     articleData[i].author = articles[i].authorName;
                     articleData[i].title = "<a class='no-underline' href='" + latkeConfig.servePath +
-                    articles[i].articlePermalink + "' target='_blank'>" + 
-                    articles[i].articleTitle + "</a><span class='table-tag'>" + articles[i].articleTags + "</span>";
+                        articles[i].articlePermalink + "' target='_blank'>" +
+                        articles[i].articleTitle + "</a><span class='table-tag'>" + articles[i].articleTags + "</span>";
                     articleData[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.article.get('" + articles[i].oId + "', false);\">" + Label.updateLabel + "</a>  \
                                 <a href='javascript:void(0)' onclick=\"admin.article.del('" + articles[i].oId + "', 'draft', '" + articles[i].articleTitle + "')\">" + Label.removeLabel + "</a>  \
                                 <a href='javascript:void(0)' onclick=\"admin.comment.open('" + articles[i].oId + "', 'draft')\">" + Label.commentLabel + "</a>";
                 }
-                    
+
                 that.tablePagination.updateTablePagination(articleData, pageNum, result.pagination);
-                
+
                 $("#loadMsg").text("");
             }
         });
@@ -2107,11 +2108,12 @@ admin.draftList = {
 /*
  * 注册到 admin 进行管理 
  */
-admin.register["draft-list"] =  {
+admin.register["draft-list"] = {
     "obj": admin.draftList,
     "init": admin.draftList.init,
     "refresh": admin.draftList.getList
-};/*
+};
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2150,36 +2152,36 @@ admin.pageList = {
      */
     init: function (page) {
         this.tablePagination.buildTable([{
-                text: "",
-                index: "pageOrder",
-                width: 60,
-                style: "padding-left: 12px;font-size:14px;"
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.titleLabel,
-                index: "pageTitle",
-                width: 300
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.permalinkLabel,
-                index: "pagePermalink",
-                minWidth: 300
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.openMethodLabel,
-                index: "pageTarget",
-                width: 120
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.typeLabel,
-                index: "pageType",
-                width: 80
-            }, {
-                text: Label.commentLabel,
-                index: "comments",
-                width: 80,
-                style: "padding-left: 12px;"
-            }]);
+            text: "",
+            index: "pageOrder",
+            width: 60,
+            style: "padding-left: 12px;font-size:14px;"
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.titleLabel,
+            index: "pageTitle",
+            width: 300
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.permalinkLabel,
+            index: "pagePermalink",
+            minWidth: 300
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.openMethodLabel,
+            index: "pageTarget",
+            width: 120
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.typeLabel,
+            index: "pageType",
+            width: 80
+        }, {
+            text: Label.commentLabel,
+            index: "comments",
+            width: 80,
+            style: "padding-left: 12px;"
+        }]);
         this.tablePagination.initPagination();
         this.tablePagination.initCommentsDialog();
         this.getList(page);
@@ -2213,7 +2215,7 @@ admin.pageList = {
 
                 // 使用 CodeMirror 编辑器时，当编辑器初始之前，元素为 display:none 时，行号显示不正常
                 if (Label.editorType === "CodeMirror-Markdown"
-                        && admin.editors.pageEditor.getContent() === "") {
+                    && admin.editors.pageEditor.getContent() === "") {
                     admin.editors.pageEditor.setContent("");
                 }
             } else {
@@ -2267,9 +2269,9 @@ admin.pageList = {
                     }
 
                     pageData[i].pageTitle = "<a class='no-underline' href='" + pages[i].pagePermalink + "' target='_blank'>" +
-                            pages[i].pageTitle + "</a>";
+                        pages[i].pageTitle + "</a>";
                     pageData[i].pagePermalink = "<a class='no-underline' href='" + pages[i].pagePermalink + "' target='_blank'>"
-                            + pages[i].pagePermalink + "</a>";
+                        + pages[i].pagePermalink + "</a>";
                     pageData[i].pageTarget = pages[i].pageOpenTarget;
                     pageData[i].pageType = pages[i].pageType;
                     pageData[i].comments = pages[i].pageCommentCount;
@@ -2353,7 +2355,7 @@ admin.pageList = {
 
                     var pageNum = admin.pageList.pageInfo.currentPage;
                     if (admin.pageList.pageInfo.currentCount === 1 && admin.pageList.pageInfo.pageCount !== 1 &&
-                            admin.pageList.pageInfo.currentPage === admin.pageList.pageInfo.pageCount) {
+                        admin.pageList.pageInfo.currentPage === admin.pageList.pageInfo.pageCount) {
                         admin.pageList.pageInfo.pageCount--;
                         pageNum = admin.pageList.pageInfo.pageCount;
                     }
@@ -2417,7 +2419,7 @@ admin.pageList = {
                     admin.editors.pageEditor.setContent("");
 
                     if (admin.pageList.pageInfo.currentCount === Label.PAGE_SIZE &&
-                            admin.pageList.pageInfo.currentPage === admin.pageList.pageInfo.pageCount) {
+                        admin.pageList.pageInfo.currentPage === admin.pageList.pageInfo.pageCount) {
                         admin.pageList.pageInfo.pageCount++;
                     }
                     var hashList = window.location.hash.split("/");
@@ -2497,7 +2499,7 @@ admin.pageList = {
             $("#tipMsg").text(Label.titleEmptyLabel);
             $("#pageTitle").focus();
         } else if (admin.pageList.type === "link" &&
-                $("#pagePermalink").val().replace(/\s/g, "") === "") {
+            $("#pagePermalink").val().replace(/\s/g, "") === "") {
             $("#tipMsg").text(Label.linkEmptyLabel);
         } else {
             return true;
@@ -2728,7 +2730,7 @@ admin.register.others = {
 
 /* link-list 相关操作 */
 admin.linkList = {
-    tablePagination:  new TablePaginate("link"),
+    tablePagination: new TablePaginate("link"),
     pageInfo: {
         currentCount: 1,
         pageCount: 1,
@@ -2743,7 +2745,7 @@ admin.linkList = {
             text: "",
             index: "linkOrder",
             width: 60
-        },{
+        }, {
             style: "padding-left: 12px;",
             text: Label.linkTitleLabel,
             index: "linkTitle",
@@ -2759,10 +2761,10 @@ admin.linkList = {
             index: "linkDescription",
             width: 360
         }]);
-    
+
         this.tablePagination.initPagination();
         this.getList(page);
-        
+
         $("#updateLink").dialog({
             width: 700,
             height: 210,
@@ -2783,18 +2785,18 @@ admin.linkList = {
         }
         this.pageInfo.currentPage = pageNum;
         var that = this;
-        
+
         $.ajax({
-            url: latkeConfig.servePath + "/console/links/" + pageNum + "/" + Label.PAGE_SIZE + "/" +  Label.WINDOW_SIZE,
+            url: latkeConfig.servePath + "/console/links/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 var links = result.links;
                 var linkData = [];
                 admin.linkList.pageInfo.currentCount = links.length;
@@ -2820,10 +2822,10 @@ admin.linkList = {
                                 <span onclick="admin.linkList.changeOrder(' + links[i].oId + ', ' + i + ', \'down\');" class="icon-move-down"></span>\
                             </div>';
                     }
-                    
+
                     linkData[i].linkTitle = links[i].linkTitle;
                     linkData[i].linkAddress = "<a target='_blank' class='no-underline' href='" + links[i].linkAddress + "'>"
-                    + links[i].linkAddress + "</a>";
+                        + links[i].linkAddress + "</a>";
                     linkData[i].linkDescription = links[i].linkDescription;
                     linkData[i].expendRow = "<span><a href='" + links[i].linkAddress + "' target='_blank'>" + Label.viewLabel + "</a>  \
                                 <a href='javascript:void(0)' onclick=\"admin.linkList.get('" + links[i].oId + "')\">" + Label.updateLabel + "</a>\
@@ -2831,12 +2833,12 @@ admin.linkList = {
                 }
 
                 that.tablePagination.updateTablePagination(linkData, pageNum, result.pagination);
-                
+
                 $("#loadMsg").text("");
             }
         });
     },
-    
+
     /*
      * 添加链接
      */
@@ -2851,19 +2853,19 @@ admin.linkList = {
                     "linkDescription": $("#linkDescription").val()
                 }
             };
-            
+
             $.ajax({
                 url: latkeConfig.servePath + "/console/link/",
                 type: "POST",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus){
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
                         return;
                     }
-                    
+
                     $("#linkTitle").val("");
                     $("#linkAddress").val("");
                     $("#linkDescription").val("");
@@ -2875,15 +2877,15 @@ admin.linkList = {
                     if (admin.linkList.pageInfo.pageCount !== parseInt(hashList[hashList.length - 1])) {
                         admin.setHashByPage(admin.linkList.pageInfo.pageCount);
                     }
-                    
+
                     admin.linkList.getList(admin.linkList.pageInfo.pageCount);
-                    
+
                     $("#loadMsg").text("");
                 }
             });
         }
     },
-    
+
     /*
      * 获取链接
      * @id 链接 id
@@ -2891,29 +2893,29 @@ admin.linkList = {
     get: function (id) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#updateLink").dialog("open");
-        
+
         $.ajax({
             url: latkeConfig.servePath + "/console/link/" + id,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 admin.linkList.id = id;
-                
+
                 $("#linkTitleUpdate").val(result.link.linkTitle);
                 $("#linkAddressUpdate").val(result.link.linkAddress);
                 $("#linkDescriptionUpdate").val(result.link.linkDescription);
-                
+
                 $("#loadMsg").text("");
             }
         });
     },
-    
+
     /*
      * 更新链接
      */
@@ -2929,28 +2931,28 @@ admin.linkList = {
                     "linkDescription": $("#linkDescriptionUpdate").val()
                 }
             };
-            
+
             $.ajax({
                 url: latkeConfig.servePath + "/console/link/",
                 type: "PUT",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus){
+                success: function (result, textStatus) {
                     $("#updateLink").dialog("close");
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
                         return;
                     }
-                    
+
                     admin.linkList.getList(admin.linkList.pageInfo.currentPage);
-                    
+
                     $("#loadMsg").text("");
                 }
             });
         }
     },
-    
+
     /*
      * 删除链接
      * @id 链接 id
@@ -2961,38 +2963,38 @@ admin.linkList = {
         if (isDelete) {
             $("#loadMsg").text(Label.loadingLabel);
             $("#tipMsg").text("");
-            
+
             $.ajax({
                 url: latkeConfig.servePath + "/console/link/" + id,
                 type: "DELETE",
                 cache: false,
-                success: function(result, textStatus){
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
                         return;
                     }
-                    
+
                     var pageNum = admin.linkList.pageInfo.currentPage;
                     if (admin.linkList.pageInfo.currentCount === 1 && admin.linkList.pageInfo.pageCount !== 1 &&
                         admin.linkList.pageInfo.currentPage === admin.linkList.pageInfo.pageCount) {
                         admin.linkList.pageInfo.pageCount--;
                         pageNum = admin.linkList.pageInfo.pageCount;
                     }
-                    
+
                     var hashList = window.location.hash.split("/");
                     if (pageNum !== parseInt(hashList[hashList.length - 1])) {
                         admin.setHashByPage(pageNum);
                     }
-                    
+
                     admin.linkList.getList(pageNum);
-                    
+
                     $("#loadMsg").text("");
                 }
             });
         }
     },
-    
+
     /*
      * 验证字段
      * @status 更新或者添加时进行验证
@@ -3015,30 +3017,30 @@ admin.linkList = {
         }
         return false;
     },
-    
+
     /*
      * 调换顺序
      */
     changeOrder: function (id, order, status) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
-        
+
         var requestJSONObject = {
             "oId": id.toString(),
             "direction": status
         };
-        
+
         $.ajax({
             url: latkeConfig.servePath + "/console/link/order/",
             type: "PUT",
             cache: false,
             data: JSON.stringify(requestJSONObject),
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
-                
+
                 // Refershes the link list
                 admin.linkList.getList(admin.linkList.pageInfo.currentPage);
-                
+
                 $("#loadMsg").text("");
             }
         });
@@ -3048,11 +3050,12 @@ admin.linkList = {
 /*
  * 注册到 admin 进行管理 
  */
-admin.register["link-list"] =  {
+admin.register["link-list"] = {
     "obj": admin.linkList,
     "init": admin.linkList.init,
     "refresh": admin.linkList.getList
-}/*
+}
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3099,12 +3102,12 @@ admin.preference = {
                 var preference = result.preference;
 
                 $("#metaKeywords").val(preference.metaKeywords),
-                        $("#metaDescription").val(preference.metaDescription),
-                        $("#blogTitle").val(preference.blogTitle),
-                        $("#blogSubtitle").val(preference.blogSubtitle),
-                        $("#mostCommentArticleDisplayCount").val(preference.mostCommentArticleDisplayCount);
+                    $("#metaDescription").val(preference.metaDescription),
+                    $("#blogTitle").val(preference.blogTitle),
+                    $("#blogSubtitle").val(preference.blogSubtitle),
+                    $("#mostCommentArticleDisplayCount").val(preference.mostCommentArticleDisplayCount);
                 $("#mostViewArticleDisplayCount").val(preference.mostViewArticleDisplayCount),
-                        $("#recentCommentDisplayCount").val(preference.recentCommentDisplayCount);
+                    $("#recentCommentDisplayCount").val(preference.recentCommentDisplayCount);
                 $("#mostUsedTagDisplayCount").val(preference.mostUsedTagDisplayCount);
                 $("#articleListDisplayCount").val(preference.articleListDisplayCount);
                 $("#articleListPaginationWindowSize").val(preference.articleListPaginationWindowSize);
@@ -3117,7 +3120,7 @@ admin.preference = {
                 $("#relevantArticlesDisplayCount").val(preference.relevantArticlesDisplayCount);
                 $("#randomArticlesDisplayCount").val(preference.randomArticlesDisplayCount);
                 $("#keyOfSolo").val(preference.keyOfSolo);
-                
+
                 "true" === preference.enableArticleUpdateHint ? $("#enableArticleUpdateHint").attr("checked", "checked") : $("#enableArticleUpdateHint").removeAttr("checked");
                 "true" === preference.allowVisitDraftViaPermalink ? $("#allowVisitDraftViaPermalink").attr("checked", "checked") : $("allowVisitDraftViaPermalink").removeAttr("checked");
                 "true" === preference.allowRegister ? $("#allowRegister").attr("checked", "checked") : $("#allowRegister").removeAttr("checked");
@@ -3133,13 +3136,13 @@ admin.preference = {
                 for (var i = 0; i < skins.length; i++) {
                     var selectedClass = "";
                     if (skins[i].skinName === preference.skinName
-                            && skins[i].skinDirName === preference.skinDirName) {
+                        && skins[i].skinDirName === preference.skinDirName) {
                         selectedClass += " selected";
                     }
                     skinsHTML += "<div title='" + skins[i].skinDirName
-                            + "' class='left skinItem" + selectedClass + "'><img class='skinPreview' src='"
-                            + latkeConfig.staticServePath + "/skins/" + skins[i].skinDirName
-                            + "/preview.png'/><div>" + skins[i].skinName + "</div></div>";
+                        + "' class='left skinItem" + selectedClass + "'><img class='skinPreview' src='"
+                        + latkeConfig.staticServePath + "/skins/" + skins[i].skinDirName
+                        + "/preview.png'/><div>" + skins[i].skinName + "</div></div>";
                 }
                 $("#skinMain").append(skinsHTML + "<div class='clear'></div>");
 
@@ -3159,7 +3162,7 @@ admin.preference = {
                 $("#editorType").val(preference.editorType);
                 $("#feedOutputMode").val(preference.feedOutputMode);
                 $("#feedOutputCnt").val(preference.feedOutputCnt);
-                
+
                 $("#loadMsg").text("");
             }
         });
@@ -3236,18 +3239,18 @@ admin.preference = {
         $("#tipMsg").text("");
         $("#loadMsg").text(Label.loadingLabel);
         var signs = [{
-                "oId": 0,
-                "signHTML": ""
-            }, {
-                "oId": 1,
-                "signHTML": $("#preferenceSign1").val()
-            }, {
-                "oId": 2,
-                "signHTML": $("#preferenceSign2").val()
-            }, {
-                "oId": 3,
-                "signHTML": $("#preferenceSign3").val()
-            }];
+            "oId": 0,
+            "signHTML": ""
+        }, {
+            "oId": 1,
+            "signHTML": $("#preferenceSign1").val()
+        }, {
+            "oId": 2,
+            "signHTML": $("#preferenceSign2").val()
+        }, {
+            "oId": 3,
+            "signHTML": $("#preferenceSign3").val()
+        }];
 
         var requestJSONObject = {
             "preference": {
@@ -3296,7 +3299,7 @@ admin.preference = {
                 }
 
                 if ($("#localeString").val() !== admin.preference.locale ||
-                        $("#editorType").val() !== admin.preference.editorType) {
+                    $("#editorType").val() !== admin.preference.editorType) {
                     window.location.reload();
                 }
 
@@ -3304,7 +3307,7 @@ admin.preference = {
                 for (var i = 1; i < signs.length; i++) {
                     if ($("#articleSign" + signs[i].oId).length === 1) {
                         $("#articleSign" + signs[i].oId).tip("option", "content",
-                                signs[i].signHTML === "" ? Label.signIsNullLabel : signs[i].signHTML.replace(/\n/g, "").replace(/<script.*<\/script>/ig, ""));
+                            signs[i].signHTML === "" ? Label.signIsNullLabel : signs[i].signHTML.replace(/\n/g, "").replace(/<script.*<\/script>/ig, ""));
                     }
                 }
 
@@ -3335,7 +3338,7 @@ admin.preference = {
                 if (result.sc) {
                     window.location.reload();
                 }
-                
+
                 $("#tipMsg").text(result.msg);
                 $("#loadMsg").text("");
             }
@@ -3387,28 +3390,28 @@ admin.pluginList = {
     /* 
      * 初始化 table, pagination
      */
-    init: function(page) {
+    init: function (page) {
         this.tablePagination.buildTable([{
-                style: "padding-left: 12px;",
-                text: Label.pluginNameLabel,
-                index: "name",
-                width: 230
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.statusLabel,
-                index: "status",
-                minWidth: 180
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.authorLabel,
-                index: "author",
-                width: 200
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.versionLabel,
-                index: "version",
-                width: 120
-            }]);
+            style: "padding-left: 12px;",
+            text: Label.pluginNameLabel,
+            index: "name",
+            width: 230
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.statusLabel,
+            index: "status",
+            minWidth: 180
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.authorLabel,
+            index: "author",
+            width: 200
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.versionLabel,
+            index: "version",
+            width: 120
+        }]);
 
         this.tablePagination.initPagination();
         $("#pluginSetting").dialog({
@@ -3423,7 +3426,7 @@ admin.pluginList = {
      * 根据当前页码获取列表
      * @pagNum 当前页码
      */
-    getList: function(pageNum) {
+    getList: function (pageNum) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         var that = this;
@@ -3432,7 +3435,7 @@ admin.pluginList = {
             url: latkeConfig.servePath + "/console/plugins/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -3443,7 +3446,7 @@ admin.pluginList = {
                 var datas = result.plugins;
                 for (var i = 0; i < datas.length; i++) {
                     datas[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.pluginList.changeStatus('" +
-                            datas[i].oId + "', '" + datas[i].status + "')\">";
+                        datas[i].oId + "', '" + datas[i].status + "')\">";
                     if (datas[i].status === "ENABLED") {
                         datas[i].status = Label.enabledLabel;
                         datas[i].expendRow += Label.disableLabel;
@@ -3464,7 +3467,7 @@ admin.pluginList = {
             }
         });
     },
-    toSetting: function(pluginId) {
+    toSetting: function (pluginId) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         var requestJSONObject = {
@@ -3476,7 +3479,7 @@ admin.pluginList = {
             type: "POST",
             cache: false,
             data: JSON.stringify(requestJSONObject),
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
 
                 $("#pluginSetting").html(result);
@@ -3486,7 +3489,7 @@ admin.pluginList = {
             }
         });
     },
-    changeStatus: function(pluginId, status) {
+    changeStatus: function (pluginId, status) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         if (status === "ENABLED") {
@@ -3505,7 +3508,7 @@ admin.pluginList = {
             type: "PUT",
             cache: false,
             data: JSON.stringify(requestJSONObject),
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -3525,7 +3528,7 @@ admin.pluginList = {
 admin.register["plugin-list"] = {
     "obj": admin.pluginList,
     "init": admin.pluginList.init,
-    "refresh": function() {
+    "refresh": function () {
         $("#loadMsg").text("");
     }
 };
@@ -3567,23 +3570,23 @@ admin.userList = {
     /* 
      * 初始化 table, pagination
      */
-    init: function(page) {
+    init: function (page) {
         this.tablePagination.buildTable([{
-                style: "padding-left: 12px;",
-                text: Label.commentNameLabel,
-                index: "userName",
-                width: 230
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.commentEmailLabel,
-                index: "userEmail",
-                minWidth: 180
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.roleLabel,
-                index: "isAdmin",
-                width: 120
-            }]);
+            style: "padding-left: 12px;",
+            text: Label.commentNameLabel,
+            index: "userName",
+            width: 230
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.commentEmailLabel,
+            index: "userEmail",
+            minWidth: 180
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.roleLabel,
+            index: "isAdmin",
+            width: 120
+        }]);
 
         this.tablePagination.initPagination();
         this.getList(page);
@@ -3599,7 +3602,7 @@ admin.userList = {
      * 根据当前页码获取列表
      * @pagNum 当前页码
      */
-    getList: function(pageNum) {
+    getList: function (pageNum) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         this.pageInfo.currentPage = pageNum;
@@ -3609,7 +3612,7 @@ admin.userList = {
             url: latkeConfig.servePath + "/console/users/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -3634,12 +3637,12 @@ admin.userList = {
                     if ("adminRole" === users[i].userRole) {
                         userData[i].isAdmin = "&nbsp;" + Label.administratorLabel;
                         userData[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.userList.get('" +
-                                users[i].oId + "', '" + users[i].userRole + "')\">" + Label.updateLabel + "</a>";
+                            users[i].oId + "', '" + users[i].userRole + "')\">" + Label.updateLabel + "</a>";
                     } else {
                         userData[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.userList.get('" +
-                                users[i].oId + "', '" + users[i].userRole + "')\">" + Label.updateLabel + "</a>\
+                            users[i].oId + "', '" + users[i].userRole + "')\">" + Label.updateLabel + "</a>\
                                 <a href='javascript:void(0)' onclick=\"admin.userList.del('" + users[i].oId + "', '" + users[i].userName + "')\">" + Label.removeLabel + "</a> " +
-                                "<a href='javascript:void(0)' onclick=\"admin.userList.changeRole('" + users[i].oId + "')\">" + Label.changeRoleLabel + "</a>";
+                            "<a href='javascript:void(0)' onclick=\"admin.userList.changeRole('" + users[i].oId + "')\">" + Label.changeRoleLabel + "</a>";
                         if ("defaultRole" === users[i].userRole) {
                             userData[i].isAdmin = Label.commonUserLabel;
                         }
@@ -3658,7 +3661,7 @@ admin.userList = {
     /*
      * 添加用户
      */
-    add: function() {
+    add: function () {
         if (this.validate()) {
             $("#loadMsg").text(Label.loadingLabel);
             $("#tipMsg").text("");
@@ -3676,7 +3679,7 @@ admin.userList = {
                 type: "POST",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
@@ -3689,7 +3692,7 @@ admin.userList = {
                     $("#userPassword").val("");
                     $("#userAvatar").val("");
                     if (admin.userList.pageInfo.currentCount === Label.PAGE_SIZE &&
-                            admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
+                        admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
                         admin.userList.pageInfo.pageCount++;
                     }
                     var hashList = window.location.hash.split("/");
@@ -3708,7 +3711,7 @@ admin.userList = {
      * 获取用户
      * @id 用户 id
      */
-    get: function(id, userRole) {
+    get: function (id, userRole) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         $("#userUpdate").dialog("open");
@@ -3717,7 +3720,7 @@ admin.userList = {
             url: latkeConfig.servePath + "/console/user/" + id,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -3735,7 +3738,7 @@ admin.userList = {
                 } else {
                     $userEmailUpdate.removeAttr("disabled");
                 }
-                
+
                 $("#userURLUpdate").val(result.user.userURL);
                 $("#userPasswordUpdate").val(result.user.userPassword);
                 $("#userAvatarUpdate").val(result.user.userAvatar);
@@ -3747,7 +3750,7 @@ admin.userList = {
     /*
      * 更新用户
      */
-    update: function() {
+    update: function () {
         if (this.validate("Update")) {
             $("#loadMsg").text(Label.loadingLabel);
             $("#tipMsg").text("");
@@ -3768,7 +3771,7 @@ admin.userList = {
                 type: "PUT",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#userUpdate").dialog("close");
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
@@ -3788,7 +3791,7 @@ admin.userList = {
      * @id 用户 id
      * @userName 用户名称
      */
-    del: function(id, userName) {
+    del: function (id, userName) {
         var isDelete = confirm(Label.confirmRemoveLabel + Label.userLabel + '"' + userName + '"?');
         if (isDelete) {
             $("#loadMsg").text(Label.loadingLabel);
@@ -3798,7 +3801,7 @@ admin.userList = {
                 url: latkeConfig.servePath + "/console/user/" + id,
                 type: "DELETE",
                 cache: false,
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
@@ -3807,7 +3810,7 @@ admin.userList = {
 
                     var pageNum = admin.userList.pageInfo.currentPage;
                     if (admin.userList.pageInfo.currentCount === 1 && admin.userList.pageInfo.pageCount !== 1 &&
-                            admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
+                        admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
                         admin.userList.pageInfo.pageCount--;
                         pageNum = admin.userList.pageInfo.pageCount;
                     }
@@ -3826,13 +3829,13 @@ admin.userList = {
      * 修改角色
      * @param id
      */
-    changeRole: function(id) {
+    changeRole: function (id) {
         $("#tipMsg").text("");
         $.ajax({
             url: latkeConfig.servePath + "/console/changeRole/" + id,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -3841,7 +3844,7 @@ admin.userList = {
 
                 var pageNum = admin.userList.pageInfo.currentPage;
                 if (admin.userList.pageInfo.currentCount === 1 && admin.userList.pageInfo.pageCount !== 1 &&
-                        admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
+                    admin.userList.pageInfo.currentPage === admin.userList.pageInfo.pageCount) {
                     admin.userList.pageInfo.pageCount--;
                     pageNum = admin.userList.pageInfo.pageCount;
                 }
@@ -3859,7 +3862,7 @@ admin.userList = {
      * 验证字段
      * @status 更新或者添加时进行验证
      */
-    validate: function(status) {
+    validate: function (status) {
         if (!status) {
             status = "";
         }
@@ -3890,7 +3893,8 @@ admin.register["user-list"] = {
     "obj": admin.userList,
     "init": admin.userList.init,
     "refresh": admin.userList.getList
-}/*
+}
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3925,27 +3929,27 @@ admin.categoryList = {
     /* 
      * 初始化 table, pagination
      */
-    init: function(page) {
+    init: function (page) {
         this.tablePagination.buildTable([{
-                text: "",
-                index: "linkOrder",
-                width: 60
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.titleLabel,
-                index: "categoryTitle",
-                width: 230
-            }, {
-                style: "padding-left: 12px;",
-                text: 'URI',
-                index: "categoryURI",
-                width: 230
-            }, {
-                style: "padding-left: 12px;",
-                text: Label.descriptionLabel,
-                index: "categoryDesc",
-                minWidth: 180
-            }]);
+            text: "",
+            index: "linkOrder",
+            width: 60
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.titleLabel,
+            index: "categoryTitle",
+            width: 230
+        }, {
+            style: "padding-left: 12px;",
+            text: 'URI',
+            index: "categoryURI",
+            width: 230
+        }, {
+            style: "padding-left: 12px;",
+            text: Label.descriptionLabel,
+            index: "categoryDesc",
+            minWidth: 180
+        }]);
 
         this.tablePagination.initPagination();
         this.getList(page);
@@ -3992,7 +3996,7 @@ admin.categoryList = {
      * 根据当前页码获取列表
      * @pagNum 当前页码
      */
-    getList: function(pageNum) {
+    getList: function (pageNum) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         this.pageInfo.currentPage = pageNum;
@@ -4002,7 +4006,7 @@ admin.categoryList = {
             url: latkeConfig.servePath + "/console/categories/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -4040,9 +4044,9 @@ admin.categoryList = {
                     categoryData[i].categoryDesc = categories[i].categoryDescription;
 
                     categoryData[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.categoryList.get('" +
-                            categories[i].oId + "')\">" + Label.updateLabel + "</a>\
+                        categories[i].oId + "')\">" + Label.updateLabel + "</a>\
                             <a href='javascript:void(0)' onclick=\"admin.categoryList.del('" + categories[i].oId + "', '" +
-                            categories[i].categoryTitle + "')\">" + Label.removeLabel + "</a> ";
+                        categories[i].categoryTitle + "')\">" + Label.removeLabel + "</a> ";
 
                 }
                 that.tablePagination.updateTablePagination(categoryData, pageNum, result.pagination);
@@ -4053,7 +4057,7 @@ admin.categoryList = {
     /*
      * 添加分类
      */
-    add: function() {
+    add: function () {
         if (this.validate()) {
             $("#loadMsg").text(Label.loadingLabel);
             $("#tipMsg").text("");
@@ -4070,7 +4074,7 @@ admin.categoryList = {
                 type: "POST",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
@@ -4082,7 +4086,7 @@ admin.categoryList = {
                     $("#categoryURI").val("");
                     $("#categoryDesc").val("");
                     if (admin.categoryList.pageInfo.currentCount === Label.PAGE_SIZE &&
-                            admin.categoryList.pageInfo.currentPage === admin.categoryList.pageInfo.pageCount) {
+                        admin.categoryList.pageInfo.currentPage === admin.categoryList.pageInfo.pageCount) {
                         admin.categoryList.pageInfo.pageCount++;
                     }
                     var hashList = window.location.hash.split("/");
@@ -4101,7 +4105,7 @@ admin.categoryList = {
      * 获取单个分类
      * @id 用户 id
      */
-    get: function(id) {
+    get: function (id) {
         $("#loadMsg").text(Label.loadingLabel);
         $("#tipMsg").text("");
         $("#categoryUpdate").dialog("open");
@@ -4110,7 +4114,7 @@ admin.categoryList = {
             url: latkeConfig.servePath + "/console/category/" + id,
             type: "GET",
             cache: false,
-            success: function(result, textStatus) {
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
@@ -4129,7 +4133,7 @@ admin.categoryList = {
     /*
      * 更新分类
      */
-    update: function() {
+    update: function () {
         if (this.validate("Update")) {
             $("#loadMsg").text(Label.loadingLabel);
             $("#tipMsg").text("");
@@ -4147,7 +4151,7 @@ admin.categoryList = {
                 type: "PUT",
                 cache: false,
                 data: JSON.stringify(requestJSONObject),
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#categoryUpdate").dialog("close");
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
@@ -4167,7 +4171,7 @@ admin.categoryList = {
      * @id 分类 id
      * @categoryName 分类名称
      */
-    del: function(id, categoryName) {
+    del: function (id, categoryName) {
         var isDelete = confirm(Label.confirmRemoveLabel + Label.categoryLabel + '"' + categoryName + '"?');
         if (isDelete) {
             $("#loadMsg").text(Label.loadingLabel);
@@ -4177,7 +4181,7 @@ admin.categoryList = {
                 url: latkeConfig.servePath + "/console/category/" + id,
                 type: "DELETE",
                 cache: false,
-                success: function(result, textStatus) {
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
@@ -4186,7 +4190,7 @@ admin.categoryList = {
 
                     var pageNum = admin.categoryList.pageInfo.currentPage;
                     if (admin.categoryList.pageInfo.currentCount === 1 && admin.categoryList.pageInfo.pageCount !== 1 &&
-                            admin.categoryList.pageInfo.currentPage === admin.categoryList.pageInfo.pageCount) {
+                        admin.categoryList.pageInfo.currentPage === admin.categoryList.pageInfo.pageCount) {
                         admin.categoryList.pageInfo.pageCount--;
                         pageNum = admin.categoryList.pageInfo.pageCount;
                     }
@@ -4205,7 +4209,7 @@ admin.categoryList = {
      * 验证字段
      * @status 更新或者添加时进行验证
      */
-    validate: function(status) {
+    validate: function (status) {
         if (!status) {
             status = "";
         }
@@ -4238,7 +4242,7 @@ admin.categoryList = {
             type: "PUT",
             cache: false,
             data: JSON.stringify(requestJSONObject),
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
 
                 // Refershes the link list
@@ -4257,7 +4261,8 @@ admin.register["category-list"] = {
     "obj": admin.categoryList,
     "init": admin.categoryList.init,
     "refresh": admin.categoryList.getList
-}/*
+}
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -4282,11 +4287,11 @@ admin.register["category-list"] = {
 
 /* comment-list 相关操作 */
 admin.commentList = {
-    tablePagination:  new TablePaginate("comment"),
+    tablePagination: new TablePaginate("comment"),
     pageInfo: {
         currentPage: 1
     },
-    
+
     /* 
      * 初始化 table, pagination, comments dialog 
      */
@@ -4318,59 +4323,59 @@ admin.commentList = {
     getList: function (pageNum) {
         var that = this;
         $("#loadMsg").text(Label.loadingLabel);
-        
+
         $.ajax({
-            url: latkeConfig.servePath + "/console/comments/" + pageNum + "/" + Label.PAGE_SIZE + "/" +  Label.WINDOW_SIZE,
+            url: latkeConfig.servePath + "/console/comments/" + pageNum + "/" + Label.PAGE_SIZE + "/" + Label.WINDOW_SIZE,
             type: "GET",
             cache: false,
-            success: function(result, textStatus){
+            success: function (result, textStatus) {
                 $("#tipMsg").text(result.msg);
                 if (!result.sc) {
                     $("#loadMsg").text("");
                     return;
                 }
-                
+
                 that.pageInfo.currentPage = pageNum;
                 var comments = result.comments,
-                commentsData = [];
+                    commentsData = [];
                 for (var i = 0; i < comments.length; i++) {
                     var type = "Article"
                     if (comments[i].type === "pageComment") {
                         type = "Page"
                     }
-                    
+
                     commentsData[i] = {};
-                    
-                    commentsData[i].content = Util.replaceEmString(comments[i].commentContent) + 
-                    "<span class='table-tag'> on &nbsp;&nbsp;</span><a href='" + latkeConfig.servePath + comments[i].commentSharpURL + 
-                    "' target='_blank'>" + comments[i].commentTitle +
-                    "</a>";
-                
+
+                    commentsData[i].content = Util.replaceEmString(comments[i].commentContent) +
+                        "<span class='table-tag'> on &nbsp;&nbsp;</span><a href='" + latkeConfig.servePath + comments[i].commentSharpURL +
+                        "' target='_blank'>" + comments[i].commentTitle +
+                        "</a>";
+
                     commentsData[i].expendRow = "<a href='javascript:void(0)' onclick=\"admin.commentList.del('" +
-                    comments[i].oId + "', '" + type + "')\">" + Label.removeLabel + "</a>";
-                
-                    commentsData[i].title = "<img class='small-head' src='" + 
-                    comments[i].commentThumbnailURL + "'/>";
+                        comments[i].oId + "', '" + type + "')\">" + Label.removeLabel + "</a>";
+
+                    commentsData[i].title = "<img class='small-head' src='" +
+                        comments[i].commentThumbnailURL + "'/>";
                     if ("http://" === comments[i].commentURL) {
                         commentsData[i].title += comments[i].commentName;
                     } else {
                         commentsData[i].title += "<a href='" + comments[i].commentURL +
-                        "' target='_blank' class='no-underline'>" + comments[i].commentName + 
-                        "</a>";
-                    }                    
+                            "' target='_blank' class='no-underline'>" + comments[i].commentName +
+                            "</a>";
+                    }
                     commentsData[i].title += "<br/><a href='mailto:" + comments[i].commentEmail +
-                    "'>" + comments[i].commentEmail + "</a>";                
-                    
+                        "'>" + comments[i].commentEmail + "</a>";
+
                     commentsData[i].date = $.bowknot.getDate(comments[i].commentTime);
                 }
-                
+
                 that.tablePagination.updateTablePagination(commentsData, pageNum, result.pagination);
-                
+
                 $("#loadMsg").text("");
             }
         });
     },
-    
+
     /* 
      * 删除评论
      * @id 评论 id 
@@ -4379,20 +4384,20 @@ admin.commentList = {
     del: function (id, type) {
         if (confirm(Label.confirmRemoveLabel + Label.commentLabel + "?")) {
             $("#loadMsg").text(Label.loadingLabel);
-            
+
             $.ajax({
                 url: latkeConfig.servePath + "/console/" + type.toLowerCase() + "/comment/" + id,
                 type: "DELETE",
                 cache: false,
-                success: function(result, textStatus){
+                success: function (result, textStatus) {
                     $("#tipMsg").text(result.msg);
                     if (!result.sc) {
                         $("#loadMsg").text("");
                         return;
                     }
-                    
+
                     admin.commentList.getList(admin.commentList.pageInfo.currentPage);
-                    
+
                     $("#loadMsg").text("");
                 }
             });
@@ -4403,11 +4408,12 @@ admin.commentList = {
 /*
  * 注册到 admin 进行管理 
  */
-admin.register["comment-list"] =  {
+admin.register["comment-list"] = {
     "obj": admin.commentList,
     "init": admin.commentList.init,
     "refresh": admin.commentList.getList
-}/*
+}
+/*
  * Copyright (c) 2010-2017, b3log.org & hacpai.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -4431,7 +4437,7 @@ admin.register["comment-list"] =  {
 var plugins = {};
 admin.plugin = {
     plugins: [],
-    
+
     /*
      * 添加插件进行管理
      */
@@ -4440,14 +4446,14 @@ admin.plugin = {
         data.isInit = false;
         data.hash = data.path.replace("/", "#") + "/" + data.id;
         this.plugins.push(data);
-        
+
         var pathList = this._analysePath(data.path);
         // 添加一二级 Tab
         if (data.index && pathList.length < 2) {
             this._addNew(data, pathList);
         }
     },
-    
+
     /*
      * 根据当前 hash 初始化或刷新插件
      */
@@ -4456,36 +4462,36 @@ admin.plugin = {
         for (var i = 0; i < pluginList.length; i++) {
             var data = pluginList[i];
             var pathList = this._analysePath(data.path),
-            isCurrentPlugin = false;
-            
+                isCurrentPlugin = false;
+
             // 根据当前 hash 和插件 path 判别是非为当前插件
             if (data.index && window.location.hash.indexOf(data.hash) > -1) {
                 isCurrentPlugin = true;
-            } else if(data.path.replace("/", "#") === window.location.hash ||
+            } else if (data.path.replace("/", "#") === window.location.hash ||
                 (window.location.hash === "#main" && data.path.indexOf("/main/panel") > -1)) {
                 isCurrentPlugin = true;
             }
-            
+
             if (isCurrentPlugin) {
                 if (data.isInit) {
                     // 插件已经初始化过，只需进行刷新
                     if (plugins[data.id].refresh) {
-                        plugins[data.id].refresh(tags.page);                           
+                        plugins[data.id].refresh(tags.page);
                     }
                 } else {
                     // 初始化插件
-                    if (!data.index){
+                    if (!data.index) {
                         this._addToExist(data, pathList);
                     } else if (pathList.length === 2) {
                         this._addNew(data, pathList);
-                    } 
+                    }
                     plugins[data.id].init(tags.page);
                     data.isInit = true;
                 }
             }
-        }  
+        }
     },
-    
+
     /*
      * 解析添加路径
      */
@@ -4494,7 +4500,7 @@ admin.plugin = {
         paths.splice(0, 1);
         return paths;
     },
-    
+
     /*
      * 添加一二级 tab
      */
@@ -4511,14 +4517,14 @@ admin.plugin = {
             admin.tools.push("#" + data.id);
             data.target = $("#tabTools>li").get(data.index - 1);
         }
-        
+
         if (!data.target) {
             alert("data.index is error!");
         }
-        
+
         $("#tabs").tabs("add", data);
     },
-    
+
     /*
      * 在已有页面上进行添加
      */
@@ -4564,13 +4570,12 @@ admin.plugin = {
  */
 
 /* main 相关操作 */
-admin.main = {
-};
+admin.main = {};
 
 /*
  * 注册到 admin 进行管理 
  */
-admin.register.main =  {
+admin.register.main = {
     "obj": admin.main,
     "init": function () {
         admin.clearTip();
@@ -4604,22 +4609,22 @@ admin.register.main =  {
 
 /* about 相关操作 */
 admin.about = {
-    init: function() {
+    init: function () {
         $.ajax({
             url: "https://rhythm.b3log.org/version/solo/latest/" + Label.version,
             type: "GET",
             cache: false,
             dataType: "jsonp",
-            success: function(data, textStatus) {
+            success: function (data, textStatus) {
                 var version = data.soloVersion;
                 if (version === Label.version) {
                     $("#aboutLatest").text(Label.upToDateLabel);
                 } else {
                     $("#aboutLatest").html(Label.outOfDateLabel +
-                            "<a href='" + data.soloDownload + "'>" + version + "</a>");
+                        "<a href='" + data.soloDownload + "'>" + version + "</a>");
                 }
             },
-            complete: function(XHR, TS) {
+            complete: function (XHR, TS) {
                 admin.clearTip();
             }
         });
@@ -4632,7 +4637,7 @@ admin.about = {
 admin.register["about"] = {
     "obj": admin.about,
     "init": admin.about.init,
-    "refresh": function() {
+    "refresh": function () {
         admin.clearTip();
     }
 };
