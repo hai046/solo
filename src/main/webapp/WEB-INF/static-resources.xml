@@ -101,4 +101,8 @@
     <include path="/CHANGE_LOGS.html"/>
     <include path="/LICENSE.txt"/>
 
+    <!--添加支持自定义目录-->
+    <include path="/uploadContent/**/*"/>
+
+
 </static-files>
