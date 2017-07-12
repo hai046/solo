@@ -1,6 +1,5 @@
 package org.b3log.solo.processor;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -8,9 +7,6 @@ import java.util.Iterator;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import jodd.upload.FileUpload;
-import jodd.upload.impl.MemoryFileUploadFactory;
 import org.apache.commons.io.FileUtils;
 import org.b3log.latke.servlet.HTTPRequestContext;
 import org.b3log.latke.servlet.HTTPRequestMethod;
@@ -20,7 +16,9 @@ import org.b3log.latke.servlet.renderer.JSONRenderer;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import jodd.upload.FileUpload;
 import jodd.upload.MultipartStreamParser;
+import jodd.upload.impl.MemoryFileUploadFactory;
 
 /**
  * Created by haizhu on 2017/7/12.
