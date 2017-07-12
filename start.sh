@@ -6,7 +6,7 @@ echo ${result}
 if [[ ${result} != "" ]];then
     echo "存在该线程  不能开启"
 
-    kill -9 |awk '{print $2}'
+    kill -9 `echo ${result}|awk '{print $2}'`
 
     exit 0;
 
