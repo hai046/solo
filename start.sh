@@ -26,9 +26,10 @@ cp target/solo.war webapp/
 
 cd webapp
 
-mkdir /data/uploadContent
+mkdir images/upload
 
-ln -s /data/uploadContent  uploadContent
+
+ln -s /data/uploadContent  images/upload
 
 unzip solo.war
 

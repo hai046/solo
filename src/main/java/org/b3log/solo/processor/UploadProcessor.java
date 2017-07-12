@@ -34,7 +34,7 @@ public class UploadProcessor {
 
     private final static int MAX_SIZE = 5 * 1024 * 1024;//5M
 
-    private static String BASE_DIR = "uploadContent";
+    private static String BASE_DIR = "images/upload";
 
     private static Logger logger = LoggerFactory.getLogger(UploadProcessor.class);
 
@@ -72,7 +72,7 @@ public class UploadProcessor {
 
                 jsonObject.put("key", saveFile.getPath());
 
-                logger.error("save {}", saveFile.getAbsolutePath());
+                logger.info("save {}", saveFile.getAbsolutePath());
                 break;
             }
 

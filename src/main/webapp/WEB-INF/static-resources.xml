@@ -80,6 +80,8 @@
     <include path="/images/**/*.jpg"/>
     <include path="/images/**.gif"/>
     <include path="/images/**/*.gif"/>
+    <include path="/images/**/*.webp"/>
+
 
     <include path="/plugins/**.css"/>
     <include path="/plugins/**/*.css"/>
@@ -101,12 +103,6 @@
     <include path="/CHANGE_LOGS.html"/>
     <include path="/LICENSE.txt"/>
 
-    <!--添加支持自定义目录-->
-    <include path="/uploadContent/**/*.jpg"/>
-    <include path="/uploadContent/**/*.png"/>
-    <include path="/uploadContent/**/*.webp"/>
-    <include path="/uploadContent/**/*.jpeg"/>
-    <include path="/uploadContent/**/**"/>
 
 
 </static-files>
