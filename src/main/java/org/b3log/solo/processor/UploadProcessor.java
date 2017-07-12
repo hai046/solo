@@ -19,6 +19,8 @@ import org.json.JSONObject;
 import jodd.upload.FileUpload;
 import jodd.upload.MultipartStreamParser;
 import jodd.upload.impl.MemoryFileUploadFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by haizhu on 2017/7/12.
@@ -34,6 +36,8 @@ public class UploadProcessor {
 
     private static String BASE_DIR = "uploadContent";
 
+    private static Logger logger = LoggerFactory.getLogger(UploadProcessor.class);
+
     @RequestProcessing(value = "/upload", method = HTTPRequestMethod.POST)
     public void upload(final HTTPRequestContext context) {
         final HttpServletRequest request = context.getRequest();
@@ -45,7 +49,6 @@ public class UploadProcessor {
 
         request.getSession().getServletContext();
         String contentType = request.getContentType();
-        System.out.println("contentType=" + contentType);
         if (contentType != null && contentType.toLowerCase().startsWith("multipart/")) try {
             ServletInputStream inputStream = request.getInputStream();
 
@@ -63,11 +66,11 @@ public class UploadProcessor {
             while (iterator.hasNext()) {
                 String name = iterator.next();
                 FileUpload file = multipartStreamParser.getFile(name);
-                FileUtils.writeByteArrayToFile(new File(BASE_DIR, key), file.getFileContent());
+                File saveFile = new File(BASE_DIR, key);
+                FileUtils.writeByteArrayToFile(saveFile, file.getFileContent());
                 files.put(name);
 
-                System.out.println("fileName=" + name);
-                jsonObject.put("key", key);
+                logger.error("save {}", saveFile.getAbsolutePath());
                 break;
             }
 
