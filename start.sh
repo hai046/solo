@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+
+git checkout local_storage
+git pull
+
 result=`ps -ef|grep -v grep |grep org.b3log.solo.Starter`
 
 echo ${result}
@@ -8,7 +12,6 @@ if [[ ${result} != "" ]];then
 
     kill -9 `echo ${result}|awk '{print $2}'`
 
-    exit 0;
 
 fi
 

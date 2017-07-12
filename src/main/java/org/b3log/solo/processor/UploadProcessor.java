@@ -70,7 +70,7 @@ public class UploadProcessor {
                 FileUtils.writeByteArrayToFile(saveFile, file.getFileContent());
                 files.put(name);
 
-                jsonObject.put("key",saveFile.getPath());
+                jsonObject.put("key", saveFile.getPath());
 
                 logger.error("save {}", saveFile.getAbsolutePath());
                 break;
