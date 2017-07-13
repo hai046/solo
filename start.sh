@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-git checkout local_storage_jimeo
+git checkout local_storage_jiemo
 git pull
 
 result=`ps -ef|grep -v grep |grep org.b3log.solo.Starter`
