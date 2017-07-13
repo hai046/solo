@@ -126,7 +126,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <a href="https://hacpai.com/article/1457158841475" target="_blank">${APILabel}</a>
+                        <a href="https://blog.jiemo.com/article/1457158841475" target="_blank">${APILabel}</a>
                     </td>
                 </tr>
             </tbody>

@@ -4,7 +4,7 @@
         <div class="module-panel">
             <div class="module-header">
                 <h2 class="left">
-                    <a target="_blank" href="https://hacpai.com/tags/B3log%20Broadcast">
+                    <a target="_blank" href="https://blog.jiemo.com/tags/B3log%20Broadcast">
                         ${userBroadcastLabel}
                     </a>
                 </h2>
@@ -93,7 +93,7 @@
             // 获取广播
             $.ajax({
                 type: "GET",
-                url: "https://hacpai.com/apis/broadcasts",
+                url: "https://blog.jiemo.com/apis/broadcasts",
                 dataType: "jsonp",
                 jsonp: "callback",
                 beforeSend: function() {

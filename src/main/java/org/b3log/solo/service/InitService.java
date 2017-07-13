@@ -318,7 +318,7 @@ public class InitService {
         comment.put(Keys.OBJECT_ID, articleId);
         comment.put(Comment.COMMENT_NAME, "Daniel");
         comment.put(Comment.COMMENT_EMAIL, "dl88250@gmail.com");
-        comment.put(Comment.COMMENT_URL, "https://hacpai.com/member/88250");
+        comment.put(Comment.COMMENT_URL, "https://blog.jiemo.com/member/88250");
         comment.put(Comment.COMMENT_CONTENT, langPropsService.get("helloWorld.comment.content"));
         comment.put(Comment.COMMENT_ORIGINAL_COMMENT_ID, "");
         comment.put(Comment.COMMENT_ORIGINAL_COMMENT_NAME, "");
@@ -509,7 +509,7 @@ public class InitService {
         final JSONObject link = new JSONObject();
 
         link.put(Link.LINK_TITLE, "黑客派");
-        link.put(Link.LINK_ADDRESS, "https://hacpai.com");
+        link.put(Link.LINK_ADDRESS, "https://blog.jiemo.com");
         link.put(Link.LINK_DESCRIPTION, "黑客与画家的社区");
 
         final int maxOrder = linkRepository.getMaxOrder();

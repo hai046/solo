@@ -90,7 +90,7 @@ public class CommentProcessorTestCase extends AbstractTestCase {
         requestJSON.put("oId", addPage());
         requestJSON.put("commentName", "88250");
         requestJSON.put("commentEmail", "d@hacpai.com");
-        requestJSON.put("commentURL", "https://hacpai.com");
+        requestJSON.put("commentURL", "https://blog.jiemo.com");
         requestJSON.put("commentContent", "测试评论");
 
         final BufferedReader reader = new BufferedReader(new StringReader(requestJSON.toString()));
@@ -132,7 +132,7 @@ public class CommentProcessorTestCase extends AbstractTestCase {
         requestJSON.put("oId", addArticle());
         requestJSON.put("commentName", "88250");
         requestJSON.put("commentEmail", "d@hacpai.com");
-        requestJSON.put("commentURL", "https://hacpai.com");
+        requestJSON.put("commentURL", "https://blog.jiemo.com");
         requestJSON.put("commentContent", "测试评论");
 
         final BufferedReader reader = new BufferedReader(new StringReader(requestJSON.toString()));
